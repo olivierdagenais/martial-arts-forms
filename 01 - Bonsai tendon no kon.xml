@@ -1,7 +1,8 @@
 <form>
-    <description>
+    <author>Olivier Dagenais</author>
+    <video filename="01 - Bonsai tendon no kon.mp4">
         Performed by Master John Laroda &#x00A9; <a href="https://prostylemartialarts.com/">Pro-Style Martial Arts</a>
-    </description>
+    </video>
     <step name="Open">
         <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:04.831" />
         <line>Stand toward N</line>
