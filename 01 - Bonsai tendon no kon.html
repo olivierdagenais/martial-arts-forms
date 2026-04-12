@@ -194,7 +194,7 @@ figure:fullscreen .controls {
     </figure>
     <div id="chaptersBox" style="float: right; width: 40%">
         <ol>
-            <a href="#Open" onclick="seek('00:00:04.831')">
+            <a href="#Open" onclick="seek(4.831)">
                 <li>Open</li>
                 <ul>
                     <li>Stand toward N</li>
@@ -202,7 +202,7 @@ figure:fullscreen .controls {
                     <li>Left knife-hand strike, toward W, turn palm up, dynamic reach for bo near right armpit</li>
                 </ul>
             </a>
-            <a href="#Ready" onclick="seek('00:00:11.001')">
+            <a href="#Ready" onclick="seek(11.001)">
                 <li>Ready</li>
                 <ul>
                     <li>Unwind hands as you turn toward E in ready stance</li>
@@ -278,7 +278,10 @@ function checkVolume(dir) {
   }
   changeButtonState("mute");
 }
-
+function seek(seconds) {
+  video.currentTime = seconds;
+  video.play();
+}
 function alterVolume(dir) {
   checkVolume(dir);
 }
