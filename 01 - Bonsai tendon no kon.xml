@@ -1,0 +1,57 @@
+<form>
+    <description>
+        Performed by Master John Laroda &#x00A9; <a href="https://prostylemartialarts.com/">Pro-Style Martial Arts</a>
+    </description>
+    <step name="Open">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:04.831" />
+        <line>Stand toward N</line>
+        <line>Slight bend in knees, raise bo with right hand</line>
+        <line>Left knife-hand strike, toward W, turn palm up, dynamic reach for bo near right armpit</line>
+    </step>
+    <step name="Ready">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:11.001" />
+        <line>Unwind hands as you turn toward E in ready stance</line>
+    </step>
+    <step name="Punch">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:12.733" />
+        <line>Look toward N, raise bo to shoulder height</line>
+        <line>As you move into a right front stance toward N, punch right</line>
+    </step>
+    <step name="First kiai">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:14.413" />
+        <line>Still in front stance: up, down, right, left</line>
+        <line>Bring bo backward and lift front foot</line>
+        <line>Thrust and bring down front foot, kiai</line>
+    </step>
+    <step name="First uppercut">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:18.755" />
+        <line>Still in right front stance, reverse strike, strike</line>
+        <line>As you bring the back foot up halfway, row backwards on the right</line>
+        <line>Move the right foot to a left hook stance, finishing the bo with an uppercut</line>
+    </step>
+    <step name="Second kiai">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:22.635" />
+        <line>Unwind by pivoting on the feet to turn facing S while performing a reverse strike</line>
+        <line>Bring bo on right shoulder and punch while moving to right front stance, kiai</line>
+    </step>
+    <step name="First press">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:27.887" />
+        <line>Bring left foot to right while pivoting to face E and raising left arm to hold bo to the right of the body</line>
+        <line>Dynamically move to left front stance, raising left arm as in a face block and right hand keeps bo mostly vertical, further out at the bottom</line>
+    </step>
+    <step name="Second press">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:31.838" />
+        <line>Bring right foot to left (still facing E) and raising left arm to hold bo to the left of the body</line>
+        <line>Dynamically move to right front stance facing S, raising left arm as in a face block and right hand keeps bo mostly vertical, further out at the bottom</line>
+    </step>
+    <step name="">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:34.621" />
+        <line>Rotate bo counter-clockwise 360 degrees, ending with a sweeping reverse strike</line>
+        <line>Bring up back foot halfway while rowing backwards on the right</line>
+        <line>Move right foot into a left hook stance, finishing the bo with an uppercut</line>
+    </step>
+    <step name="">
+        <video filename="01 - Bonsai tendon no kon.mp4" start="00:00:00.000" />
+        <line></line>
+    </step>
+</form>
