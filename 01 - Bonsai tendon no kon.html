@@ -33,18 +33,17 @@ video {
 
 /* controls */
 .controls {
-  display: flex;
   align-items: center;
   overflow: hidden;
   width: 100%;
-  height: 2rem;
+  height: auto;
   position: relative;
 }
 .controls[data-state="hidden"] {
   display: none;
 }
 .controls button {
-  width: 2rem;
+  width: calc(100% / 6);
   height: 2rem;
   text-align: center;
   overflow: hidden;
@@ -89,10 +88,15 @@ video {
 .controls button[data-state="cancel-fullscreen"] {
   background-image: url("fullscreen-exit.svg");
 }
+.controls #buttons {
+  display: flex;
+  width: 99%;
+}
 .controls .progress {
-  flex-grow: 1;
   cursor: pointer;
-  height: 80%;
+  height: 2rem;
+  display: block;
+  width: 100%;
 }
 .controls progress {
   display: block;
@@ -130,33 +134,6 @@ figure:fullscreen figcaption {
 figure:fullscreen .controls {
   background-color: #666666;
 }
-
-@media screen and (width <= 42.5em) {
-  .controls {
-    height: auto;
-  }
-
-  .controls button {
-    width: calc(100% / 6);
-    margin-top: 2.5rem;
-  }
-
-  .controls .progress {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    margin-top: 0;
-    height: 2rem;
-  }
-
-  .controls .progress progress {
-    width: 98%;
-  }
-
-  figcaption {
-    text-align: center;
-  }
-}
     </style>
 </head>
 <body>
@@ -169,15 +146,17 @@ figure:fullscreen .controls {
             <source src="01 - Bonsai tendon no kon.mp4" type="video/mp4" />
         </video>
         <div id="video-controls" class="controls" data-state="hidden">
-            <button id="play-pause" type="button" data-state="play">Play/Pause</button>
-            <button id="stop" type="button" data-state="stop">Stop</button>
+            <div id="buttons">
+                <button id="play-pause" type="button" data-state="play">Play/Pause</button>
+                <button id="stop" type="button" data-state="stop">Stop</button>
+                <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
+                <button id="vol-inc" type="button" data-state="vol-up">Vol+</button>
+                <button id="vol-dec" type="button" data-state="vol-down">Vol-</button>
+                <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
+            </div>
             <div class="progress">
                 <progress id="progress" value="0"><span id="progress-bar"></span></progress>
             </div>
-            <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
-            <button id="vol-inc" type="button" data-state="vol-up">Vol+</button>
-            <button id="vol-dec" type="button" data-state="vol-down">Vol-</button>
-            <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
         </div>
         <figcaption>
             Performed by Master John Laroda &copy; <a href="https://prostylemartialarts.com/">Pro-Style Martial Arts</a> <br />
