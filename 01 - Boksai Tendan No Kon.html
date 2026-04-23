@@ -321,6 +321,9 @@ video.addEventListener("loadedmetadata", () => {
 video.addEventListener("timeupdate", () => {
   if (!progress.getAttribute("max"))
     progress.setAttribute("max", video.duration);
+  if (loopEnd < 0) {
+    loopEnd = video.duration;
+  }
   progress.value = video.currentTime;
   if (looping && video.currentTime >= loopEnd) {
     seek(loopStart, loopEnd)
