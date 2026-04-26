@@ -42,7 +42,7 @@ video {
   display: none;
 }
 .controls button {
-  width: calc(100% / 6);
+  width: calc(100% / 5);
   height: 2rem;
   text-align: center;
   overflow: hidden;
@@ -93,6 +93,10 @@ video {
 .controls #buttons {
   display: flex;
   width: 99%;
+}
+.controls .options {
+  display: flex;
+  width: 100%;
 }
 .controls .progress {
   cursor: pointer;
@@ -153,11 +157,24 @@ figure:fullscreen .controls {
             </div>
             <div id="buttons">
                 <button id="play-pause" type="button" data-state="play">Play/Pause</button>
-                <button id="once-or-loop" type="button" data-state="once">Once/Loop</button>
                 <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
                 <button id="vol-inc" type="button" data-state="vol-up">Vol+</button>
                 <button id="vol-dec" type="button" data-state="vol-down">Vol-</button>
                 <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
+            </div>
+            <div class="options">
+              <fieldset><legend accesskey="l"><u>L</u>ooping</legend>
+                <input id="looping_once" accesskey="o" type="radio" name="looping" value="once">
+                  <label for="looping_once">
+                    <u>O</u>nce
+                  </label>
+                </input>
+                <input id="looping_infinite" accesskey="i" type="radio" name="looping" value="infinite" checked="true">
+                  <label for="looping_infinite">
+                    <u>I</u>nfinite
+                  </label>
+                </input>
+              </fieldset>
             </div>
         </div>
         <figcaption>
@@ -224,13 +241,14 @@ const videoContainer = document.getElementById("videoContainer");
 const video = document.getElementById("video");
 const videoControls = document.getElementById("video-controls");
 const playPause = document.getElementById("play-pause");
-const onceOrLoop = document.getElementById("once-or-loop");
+const loopingOnce = document.getElementById("looping_once");
+const loopingInfinite = document.getElementById("looping_infinite");
 const mute = document.getElementById("mute");
 const volInc = document.getElementById("vol-inc");
 const volDec = document.getElementById("vol-dec");
 const progress = document.getElementById("progress");
 const fullscreen = document.getElementById("fs");
-let looping = false;
+let looping = true;
 let loopStart = 0;
 let loopEnd = -1;
 // Hide the default controls
@@ -244,9 +262,11 @@ video.addEventListener("play", () => {
 video.addEventListener("pause", () => {
   changeButtonState("play-pause");
 });
-onceOrLoop.addEventListener("click", (e) => {
-  looping = !looping;
-  changeButtonState("once-or-loop");
+loopingOnce.addEventListener("click", (e) => {
+  looping = false;
+});
+loopingInfinite.addEventListener("click", (e) => {
+  looping = true;
 });
 mute.addEventListener("click", (e) => {
   video.muted = !video.muted;
@@ -311,8 +331,6 @@ function changeButtonState(type) {
   } else if (type === "mute") {
     // Mute button
     mute.setAttribute("data-state", video.muted ? "unmute" : "mute");
-  } else if (type === "once-or-loop") {
-    onceOrLoop.setAttribute("data-state", looping ? "loop" : "once");
   }
 }
 video.addEventListener("loadedmetadata", () => {
