@@ -157,9 +157,6 @@ figure:fullscreen .controls {
             </div>
             <div id="buttons">
                 <button id="play-pause" type="button" data-state="play">Play/Pause</button>
-                <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
-                <button id="vol-inc" type="button" data-state="vol-up">Vol+</button>
-                <button id="vol-dec" type="button" data-state="vol-down">Vol-</button>
                 <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button>
             </div>
             <div class="options">
@@ -174,6 +171,9 @@ figure:fullscreen .controls {
                     <u>I</u>nfinite
                   </label>
                 </input>
+              </fieldset>
+              <fieldset><legend accesskey="v"><u>V</u>olume</legend>
+                <input type="range" id="volume" name="volume" min="0" max="10" value="10" />
               </fieldset>
             </div>
         </div>
@@ -243,9 +243,7 @@ const videoControls = document.getElementById("video-controls");
 const playPause = document.getElementById("play-pause");
 const loopingOnce = document.getElementById("looping_once");
 const loopingInfinite = document.getElementById("looping_infinite");
-const mute = document.getElementById("mute");
-const volInc = document.getElementById("vol-inc");
-const volDec = document.getElementById("vol-dec");
+const volume = document.getElementById("volume");
 const progress = document.getElementById("progress");
 const fullscreen = document.getElementById("fs");
 let looping = true;
@@ -268,9 +266,9 @@ loopingOnce.addEventListener("click", (e) => {
 loopingInfinite.addEventListener("click", (e) => {
   looping = true;
 });
-mute.addEventListener("click", (e) => {
-  video.muted = !video.muted;
-  changeButtonState("mute");
+volume.addEventListener("change", (e) => {
+  const normalizedVolume = volume.value / volume.max;
+  video.volume = normalizedVolume;
 });
 
 playPause.addEventListener("click", (e) => {
@@ -280,46 +278,12 @@ playPause.addEventListener("click", (e) => {
     video.pause();
   }
 });
-volInc.addEventListener("click", (e) => {
-  alterVolume("+");
-});
-volDec.addEventListener("click", (e) => {
-  alterVolume("-");
-});
-function checkVolume(dir) {
-  if (dir) {
-    const currentVolume = Math.floor(video.volume * 10) / 10;
-    if (dir === "+" && currentVolume < 1) {
-      video.volume += 0.1;
-    } else if (dir === "-" && currentVolume > 0) {
-      video.volume -= 0.1;
-    }
-
-    // If the volume has been turned off, also set it as muted
-    // Note: can only do this with the custom control set as when the 'volumechange' event is raised,
-    // there is no way to know if it was via a volume or a mute change
-    video.muted = currentVolume <= 0;
-  }
-  changeButtonState("mute");
-}
 function seek(seconds, endSeconds) {
   video.currentTime = seconds;
   loopStart = seconds;
   loopEnd = endSeconds;
   video.play();
 }
-function alterVolume(dir) {
-  checkVolume(dir);
-}
-volInc.addEventListener("click", (e) => {
-  alterVolume("+");
-});
-volDec.addEventListener("click", (e) => {
-  alterVolume("-");
-});
-video.addEventListener("volumechange", () => {
-  checkVolume();
-});
 function changeButtonState(type) {
   if (type === "play-pause") {
     // Play/Pause button
@@ -328,9 +292,6 @@ function changeButtonState(type) {
     } else {
       playPause.setAttribute("data-state", "pause");
     }
-  } else if (type === "mute") {
-    // Mute button
-    mute.setAttribute("data-state", video.muted ? "unmute" : "mute");
   }
 }
 video.addEventListener("loadedmetadata", () => {
