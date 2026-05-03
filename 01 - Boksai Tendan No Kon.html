@@ -121,6 +121,23 @@ video {
   background-color: #0095dd;
 }
 
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;
+}
+
+option {
+  padding: 10px 0 0 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
 /* fullscreen */
 figure:fullscreen {
   display: flex;
@@ -174,6 +191,22 @@ figure:fullscreen .controls {
               </fieldset>
               <fieldset><legend accesskey="v"><u>V</u>olume</legend>
                 <input type="range" id="volume" name="volume" min="0" max="10" value="10" />
+              </fieldset>
+            </div>
+            <div class="options">
+              <fieldset><legend accesskey="r"><u>R</u>ate</legend>
+                <input type="range" id="rate" name="rate" list="rates" max="8" value="4" />
+                <datalist id="rates">
+                  <option value="0" label="0.125x" />
+                  <option value="1" label="0.250x" />
+                  <option value="2" label="0.500x" />
+                  <option value="3" label="0.750x" />
+                  <option value="4" label="1.000x" />
+                  <option value="5" label="2.000x" />
+                  <option value="6" label="4.000x" />
+                  <option value="7" label="8.000x" />
+                  <option value="8" label="10.00x" />
+                </datalist>
               </fieldset>
             </div>
         </div>
@@ -244,6 +277,8 @@ const playPause = document.getElementById("play-pause");
 const loopingOnce = document.getElementById("looping_once");
 const loopingInfinite = document.getElementById("looping_infinite");
 const volume = document.getElementById("volume");
+const rate = document.getElementById("rate");
+const rates = document.getElementById("rates");
 const progress = document.getElementById("progress");
 const fullscreen = document.getElementById("fs");
 let looping = true;
@@ -269,6 +304,16 @@ loopingInfinite.addEventListener("click", (e) => {
 volume.addEventListener("change", (e) => {
   const normalizedVolume = volume.value / volume.max;
   video.volume = normalizedVolume;
+});
+rate.addEventListener("change", (e) => {
+  const rawValue = rate.value;
+  const selectedOption = rates.options[rawValue];
+  const rateAsString = selectedOption.label;
+  // TODO: this works on my machine when the decimal is a "." but some cultures use ","
+  const rateAsFloat = Number.parseFloat(rateAsString);
+  if (!isNaN(rateAsFloat)) {
+    video.playbackRate = rateAsFloat;
+  }
 });
 
 playPause.addEventListener("click", (e) => {
