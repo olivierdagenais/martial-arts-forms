@@ -127,7 +127,7 @@ datalist {
   flex-direction: column;
   justify-content: space-between;
   writing-mode: vertical-lr;
-  width: 200px;
+  width: 100%;
 }
 
 option {
@@ -135,7 +135,7 @@ option {
 }
 
 input[type="range"] {
-  width: 200px;
+  width: 100%;
   margin: 0;
 }
 
@@ -184,6 +184,7 @@ figure:fullscreen .controls {
                     <u>O</u>nce
                   </label>
                 </input>
+                <br />
                 <input id="looping_infinite" accesskey="i" type="radio" name="looping" value="infinite" checked="true">
                   <label for="looping_infinite">
                     <u>I</u>nfinite
@@ -193,8 +194,6 @@ figure:fullscreen .controls {
               <fieldset><legend accesskey="v"><u>V</u>olume</legend>
                 <input type="range" id="volume" name="volume" min="0" max="10" value="10" />
               </fieldset>
-            </div>
-            <div class="options">
               <fieldset><legend accesskey="r"><u>R</u>ate</legend>
                 <input type="range" id="rate" name="rate" list="rates" max="8" value="4" />
                 <datalist id="rates">
