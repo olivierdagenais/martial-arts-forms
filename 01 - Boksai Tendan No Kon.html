@@ -198,15 +198,15 @@ figure:fullscreen .controls {
               <fieldset><legend accesskey="r"><u>R</u>ate</legend>
                 <input type="range" id="rate" name="rate" list="rates" max="8" value="4" />
                 <datalist id="rates">
-                  <option value="0" label="0.125x" />
-                  <option value="1" label="0.250x" />
-                  <option value="2" label="0.500x" />
-                  <option value="3" label="0.750x" />
-                  <option value="4" label="1.000x" />
-                  <option value="5" label="2.000x" />
-                  <option value="6" label="4.000x" />
-                  <option value="7" label="8.000x" />
-                  <option value="8" label="10.00x" />
+                  <option value="0" label="0.125x" onclick="setRate(0)" />
+                  <option value="1" label="0.250x" onclick="setRate(1)" />
+                  <option value="2" label="0.500x" onclick="setRate(2)" />
+                  <option value="3" label="0.750x" onclick="setRate(3)" />
+                  <option value="4" label="1.000x" onclick="setRate(4)" />
+                  <option value="5" label="2.000x" onclick="setRate(5)" />
+                  <option value="6" label="4.000x" onclick="setRate(6)" />
+                  <option value="7" label="8.000x" onclick="setRate(7)" />
+                  <option value="8" label="10.00x" onclick="setRate(8)" />
                 </datalist>
               </fieldset>
             </div>
@@ -307,6 +307,13 @@ volume.addEventListener("change", (e) => {
   video.volume = normalizedVolume;
 });
 rate.addEventListener("change", (e) => {
+  reactToRate();
+});
+function setRate(value) {
+  rate.value = value;
+  reactToRate();
+}
+function reactToRate() {
   const rawValue = rate.value;
   const selectedOption = rates.options[rawValue];
   const rateAsString = selectedOption.label;
@@ -315,7 +322,7 @@ rate.addEventListener("change", (e) => {
   if (!isNaN(rateAsFloat)) {
     video.playbackRate = rateAsFloat;
   }
-});
+}
 
 playPause.addEventListener("click", (e) => {
   if (video.paused || video.ended) {
