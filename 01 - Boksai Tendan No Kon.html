@@ -294,6 +294,12 @@ body.addEventListener("keydown", (event) => {
     case ' ':
       togglePlayPause();
       break;
+    case '<':
+      decreaseRate();
+      break;
+    case '>':
+      increaseRate();
+      break;
   }
 });
 video.addEventListener("click", () => {
@@ -320,6 +326,20 @@ volume.addEventListener("change", (e) => {
 rate.addEventListener("change", (e) => {
   reactToRate();
 });
+function decreaseRate() {
+  let rawValue = parseInt(rate.value);
+  if (rawValue > 0) {
+    rawValue--;
+    setRate(rawValue);
+  }
+}
+function increaseRate() {
+  let rawValue = parseInt(rate.value);
+  if (rawValue < rates.options.length - 1) {
+    rawValue++;
+    setRate(rawValue);
+  }
+}
 function setRate(value) {
   rate.value = value;
   reactToRate();
