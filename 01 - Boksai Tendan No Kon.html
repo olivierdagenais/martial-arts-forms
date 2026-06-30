@@ -296,6 +296,10 @@ body.addEventListener("keydown", (event) => {
       break;
   }
 });
+video.addEventListener("click", () => {
+  togglePlayPause();
+});
+
 video.addEventListener("play", () => {
   changeButtonState("play-pause");
 });
