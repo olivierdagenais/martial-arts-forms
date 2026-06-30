@@ -323,12 +323,15 @@ function reactToRate() {
   }
 }
 
-playPause.addEventListener("click", (e) => {
+function togglePlayPause() {
   if (video.paused || video.ended) {
     video.play();
   } else {
     video.pause();
   }
+}
+playPause.addEventListener("click", (e) => {
+  togglePlayPause();
 });
 function seek(seconds, endSeconds) {
   video.currentTime = seconds;
