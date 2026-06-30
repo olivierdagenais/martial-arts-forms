@@ -270,6 +270,7 @@ figure:fullscreen .controls {
     </div>
     <script>
     <!-- 
+const body = document.body;
 const videoContainer = document.getElementById("videoContainer");
 const video = document.getElementById("video");
 const videoControls = document.getElementById("video-controls");
@@ -288,6 +289,13 @@ let loopEnd = -1;
 video.controls = false;
 // Display the user defined video controls
 videoControls.setAttribute("data-state", "visible");
+body.addEventListener("keydown", (event) => {
+  switch(event.key) {
+    case ' ':
+      togglePlayPause();
+      break;
+  }
+});
 video.addEventListener("play", () => {
   changeButtonState("play-pause");
 });
