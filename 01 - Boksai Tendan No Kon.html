@@ -301,10 +301,10 @@ body.addEventListener("keydown", (event) => {
       increaseRate();
       break;
     case 'ArrowLeft':
-      seekToPreviousFrame();
+      seekToPreviousFrame(1);
       break;
     case 'ArrowRight':
-      seekToNextFrame();
+      seekToNextFrame(1);
       break;
   }
 });
@@ -336,11 +336,11 @@ rate.addEventListener("change", (e) => {
 // TODO: figure out how to compute, or maybe fetch it from the XML
 const secondsPerFrame = (1.0/30.0);
 
-function seekToNextFrame() {
-  seekToAdjacentFrame(secondsPerFrame);
+function seekToNextFrame(multiplier) {
+  seekToAdjacentFrame(secondsPerFrame * multiplier);
 }
-function seekToPreviousFrame() {
-  seekToAdjacentFrame(-secondsPerFrame);
+function seekToPreviousFrame(multiplier) {
+  seekToAdjacentFrame(-secondsPerFrame * multiplier);
 }
 function seekToAdjacentFrame(timeOffset) {
   if (video.paused || video.ended) {
