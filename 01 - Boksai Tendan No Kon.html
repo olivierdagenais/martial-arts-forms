@@ -300,6 +300,12 @@ body.addEventListener("keydown", (event) => {
     case '>':
       increaseRate();
       break;
+    case 'ArrowLeft':
+      seekToPreviousFrame();
+      break;
+    case 'ArrowRight':
+      seekToNextFrame();
+      break;
   }
 });
 video.addEventListener("click", () => {
@@ -326,6 +332,28 @@ volume.addEventListener("change", (e) => {
 rate.addEventListener("change", (e) => {
   reactToRate();
 });
+
+// TODO: figure out how to compute, or maybe fetch it from the XML
+const secondsPerFrame = (1.0/30.0);
+
+function seekToNextFrame() {
+  seekToAdjacentFrame(secondsPerFrame);
+}
+function seekToPreviousFrame() {
+  seekToAdjacentFrame(-secondsPerFrame);
+}
+function seekToAdjacentFrame(timeOffset) {
+  if (video.paused || video.ended) {
+    // do nothing, we're already not playing
+  }
+  else {
+    togglePlayPause();
+  }
+  const oldTime = video.currentTime;
+  const newTime = oldTime + timeOffset;
+  video.currentTime = newTime;
+}
+
 function decreaseRate() {
   let rawValue = parseInt(rate.value);
   if (rawValue > 0) {
