@@ -290,6 +290,7 @@ video.controls = false;
 // Display the user defined video controls
 videoControls.setAttribute("data-state", "visible");
 body.addEventListener("keydown", (event) => {
+  const multiplier = (event.ctrlKey) ? 30 : 1;
   switch(event.key) {
     case ' ':
       togglePlayPause();
@@ -301,10 +302,10 @@ body.addEventListener("keydown", (event) => {
       increaseRate();
       break;
     case 'ArrowLeft':
-      seekToPreviousFrame(1);
+      seekToPreviousFrame(multiplier);
       break;
     case 'ArrowRight':
-      seekToNextFrame(1);
+      seekToNextFrame(multiplier);
       break;
   }
 });
