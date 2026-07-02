@@ -295,6 +295,11 @@ body.addEventListener("keydown", (event) => {
     case ' ':
       togglePlayPause();
       break;
+    case 'l':
+      if (!event.altKey) {
+        toggleLooping();
+      }
+      break;
     case '<':
       decreaseRate();
       break;
@@ -309,6 +314,15 @@ body.addEventListener("keydown", (event) => {
       break;
   }
 });
+function toggleLooping() {
+  if (looping) {
+    loopingOnce.checked = true;
+  }
+  else {
+    loopingInfinite.checked = true;
+  }
+  looping = !looping;
+}
 video.addEventListener("click", () => {
   togglePlayPause();
 });
