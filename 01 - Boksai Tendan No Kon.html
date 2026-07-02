@@ -285,6 +285,7 @@ const fullscreen = document.getElementById("fs");
 let looping = true;
 let loopStart = 0;
 let loopEnd = -1;
+let oldVolume = 10;
 // Hide the default controls
 video.controls = false;
 // Display the user defined video controls
@@ -299,6 +300,9 @@ body.addEventListener("keydown", (event) => {
       if (!event.altKey) {
         toggleLooping();
       }
+      break;
+    case 'm':
+      toggleMute();
       break;
     case '<':
       decreaseRate();
@@ -346,6 +350,19 @@ volume.addEventListener("change", (e) => {
 function reactToVolume() {
   const normalizedVolume = volume.value / volume.max;
   video.volume = normalizedVolume;
+}
+function setVolume(value) {
+  volume.value = value;
+  reactToVolume();
+}
+function toggleMute() {
+  if (0 == volume.value) {
+    setVolume(oldVolume);
+  }
+  else {
+    oldVolume = volume.value;
+    setVolume(0);
+  }
 }
 rate.addEventListener("change", (e) => {
   reactToRate();
