@@ -341,9 +341,12 @@ loopingInfinite.addEventListener("click", (e) => {
   looping = true;
 });
 volume.addEventListener("change", (e) => {
+  reactToVolume();
+});
+function reactToVolume() {
   const normalizedVolume = volume.value / volume.max;
   video.volume = normalizedVolume;
-});
+}
 rate.addEventListener("change", (e) => {
   reactToRate();
 });
