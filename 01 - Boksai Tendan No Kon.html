@@ -341,11 +341,20 @@ video.addEventListener("pause", () => {
 loopingOnce.addEventListener("click", (e) => {
   looping = false;
 });
+loopingOnce.addEventListener("keydown", (e) => {
+  e.stopPropagation();
+});
 loopingInfinite.addEventListener("click", (e) => {
   looping = true;
 });
+loopingInfinite.addEventListener("keydown", (e) => {
+  e.stopPropagation();
+});
 volume.addEventListener("change", (e) => {
   reactToVolume();
+});
+volume.addEventListener("keydown", (e) => {
+  e.stopPropagation();
 });
 function reactToVolume() {
   const normalizedVolume = volume.value / volume.max;
@@ -366,6 +375,9 @@ function toggleMute() {
 }
 rate.addEventListener("change", (e) => {
   reactToRate();
+});
+rate.addEventListener("keydown", (e) => {
+  e.stopPropagation();
 });
 
 // TODO: figure out how to compute, or maybe fetch it from the XML
@@ -428,6 +440,9 @@ function togglePlayPause() {
 playPause.addEventListener("click", (e) => {
   togglePlayPause();
 });
+playPause.addEventListener("keydown", (e) => {
+  e.stopPropagation();
+});
 function seek(seconds, endSeconds) {
   video.currentTime = seconds;
   loopStart = seconds;
@@ -475,6 +490,9 @@ fullscreen.addEventListener("click", (e) => {
     // The document is not in fullscreen mode
     videoContainer.requestFullscreen();
   }
+});
+fullscreen.addEventListener("keydown", (e) => {
+  e.stopPropagation();
 });
 // -->
     </script>
