@@ -296,6 +296,9 @@ body.addEventListener("keydown", (event) => {
     case ' ':
       togglePlayPause();
       break;
+    case 'f':
+      toggleFullscreen();
+      break;
     case 'l':
       if (!event.altKey) {
         toggleLooping();
