@@ -483,6 +483,9 @@ if (!document?.fullscreenEnabled) {
   fullscreen.style.display = "none";
 }
 fullscreen.addEventListener("click", (e) => {
+  toggleFullscreen();
+});
+function toggleFullscreen() {
   if (document.fullscreenElement !== null) {
     // The document is in fullscreen mode
     document.exitFullscreen();
@@ -490,7 +493,7 @@ fullscreen.addEventListener("click", (e) => {
     // The document is not in fullscreen mode
     videoContainer.requestFullscreen();
   }
-});
+}
 fullscreen.addEventListener("keydown", (e) => {
   e.stopPropagation();
 });
